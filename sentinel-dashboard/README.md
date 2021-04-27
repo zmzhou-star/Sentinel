@@ -11,7 +11,7 @@ Sentinel 控制台是流量控制、熔断降级规则统一配置和管理的�
 使用如下命令将代码打包成一个 fat jar:
 
 ```bash
-mvn clean package
+mvn clean package -Dmaven.test.skip=true
 ```
 
 ### 1.2 如何启动
@@ -19,14 +19,14 @@ mvn clean package
 使用如下命令启动编译后的控制台：
 
 ```bash
-java -Dserver.port=8080 \
--Dcsp.sentinel.dashboard.server=localhost:8080 \
+java -Dserver.port=8718 \
+-Dcsp.sentinel.dashboard.server=localhost:8718 \
 -Dproject.name=sentinel-dashboard \
 -jar target/sentinel-dashboard.jar
 ```
 
-上述命令中我们指定几个 JVM 参数，其中 `-Dserver.port=8080` 是 Spring Boot 的参数，
-用于指定 Spring Boot 服务端启动端口为 `8080`。其余几个是 Sentinel 客户端的参数。
+上述命令中我们指定几个 JVM 参数，其中 `-Dserver.port=8718` 是 Spring Boot 的参数，
+用于指定 Spring Boot 服务端启动端口为 `8718`。其余几个是 Sentinel 客户端的参数。
 
 为便于演示，我们对控制台本身加入了流量控制功能，具体做法是引入 Sentinel 提供的 `CommonFilter` 这个 Servlet Filter。
 上述 JVM 参数的含义是：
